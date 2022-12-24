@@ -1,0 +1,278 @@
+[
+  {
+    "value": "1",
+    "label": "Kinh",
+    "detail": "Việt"
+  },
+  {
+    "value": "2",
+    "label": "Tày",
+    "detail": "Thổ, Ngạn, Phén, Thù Lao, Pa Dí, Tày Khao"
+  },
+  {
+    "value": "3",
+    "label": "Thái",
+    "detail": "Tày Đăm, Tày Mười, Tày Thanh, Mán Thanh, Hàng Bông, Tày Mường, Pa Thay, Thổ Đà Bắc"
+  },
+  {
+    "value": "4",
+    "label": "Hoa",
+    "detail": "Hán, Triều Châu, Phúc Kiến, Quảng Đông, Hải Nam, Hạ, Xạ Phạng"
+  },
+  {
+    "value": "5",
+    "label": "Khơ-me",
+    "detail": "Cur, Cul, Cu, Thổ, Việt gốc Miên, Krôm"
+  },
+  {
+    "value": "6",
+    "label": "Mường",
+    "detail": "Mol, Mual, Mọi, Mọi Bi, Ao Tá, Ậu Tá"
+  },
+  {
+    "value": "7",
+    "label": "Nùng",
+    "detail": "Xuồng, Giang, Nùng An, Phàn Sinh, Nùng Cháo, Nùng Lòi, Quý Rim, Khèn Lài"
+  },
+  {
+    "value": "8",
+    "label": "HMông",
+    "detail": "Mèo, Hoa, Mèo Xanh, Mèo Đỏ, Mèo Đen, Ná Mẻo, Mán Trắng"
+  },
+  {
+    "value": "9",
+    "label": "Dao",
+    "detail": "Mán, Động, Trại, Xá, Dìu, Miên, Kiềm, Miền, Quần Trắng, Dao Đỏ, Quần Chẹt, Lô Giang, Dao Tiền, Thanh Y, Lan Tẻn, Đại Bản, Tiểu Bản, Cóc Ngáng, Cóc Mùn, Sơn Đầu"
+  },
+  {
+    "value": "10",
+    "label": "Gia-rai",
+    "detail": "Giơ-rai, Tơ-buăn, Chơ-rai, Hơ-bau, Hđrung, Chor"
+  },
+  {
+    "value": "11",
+    "label": "Ngái",
+    "detail": "Xín, Lê, Đản, Khách Gia"
+  },
+  {
+    "value": "12",
+    "label": "Ê-đê",
+    "detail": "Ra-đê, Đê, Kpạ, A-đham, Krung, Ktul, Đliê Ruê, Blô, Epan, Mđhur, Bih"
+  },
+  {
+    "value": "13",
+    "label": "Ba na",
+    "detail": "Giơ-lar. Tơ-lô, Giơ-lâng, Y-lăng, Rơ-ngao, Krem, Roh, ConKđe, A-la Công, Kpăng Công, Bơ-nâm"
+  },
+  {
+    "value": "14",
+    "label": "Xơ-Đăng",
+    "detail": "Xơ-teng, Hđang, Tơ-đra, Mơ-nâm, Ha-lăng, Ca-dong, Kmrâng, ConLan, Bri-la, Tang"
+  },
+  {
+    "value": "15",
+    "label": "Sán Chay",
+    "detail": "Cao Lan, Sán Chỉ, Mán Cao Lan, Hờn Bạn, Sơn Tử"
+  },
+  {
+    "value": "16",
+    "label": "Cơ-ho",
+    "detail": "Xrê, Nốp, Tu-lốp, Cơ-don, Chil, Lat, Lach, Trinh"
+  },
+  {
+    "value": "17",
+    "label": "Chăm",
+    "detail": "Chàm, Chiêm Thành, Hroi"
+  },
+  {
+    "value": "18",
+    "label": "Sán Dìu",
+    "detail": "Sán Dẻo, Trại, Trại Đất, Mán, Quần Cộc"
+  },
+  {
+    "value": "19",
+    "label": "Hrê",
+    "detail": "Chăm Rê, Chom, Krẹ Luỹ"
+  },
+  {
+    "value": "20",
+    "label": "Mnông",
+    "detail": "Pnông, Nông, Pré, Bu-đâng, ĐiPri, Biat, Gar, Rơ-lam, Chil"
+  },
+  {
+    "value": "21",
+    "label": "Ra-glai",
+    "detail": "Ra-clây, Rai, Noang, La-oang"
+  },
+  {
+    "value": "22",
+    "label": "Xtiêng",
+    "detail": "Xa-điêng"
+  },
+  {
+    "value": "23",
+    "label": "Bru-Vân Kiều",
+    "detail": "Bru, Vân Kiều, Măng Coong, Tri Khùa"
+  },
+  {
+    "value": "24",
+    "label": "Thổ",
+    "detail": "Kẹo, Mọn, Cuối, Họ, Đan Lai, Ly Hà, Tày Pọng, Con Kha, Xá Lá Vàng"
+  },
+  {
+    "value": "25",
+    "label": "Giáy",
+    "detail": "Nhắng, Dẩng, Pầu Thìn Nu Nà, Cùi Chu, Xa"
+  },
+  {
+    "value": "26",
+    "label": "Cơ-tu",
+    "detail": "Ca-tu, Cao, Hạ, Phương, Ca-tang"
+  },
+  {
+    "value": "27",
+    "label": "Gié Triêng",
+    "detail": "Đgiéh, Tareb, Giang Rẫy Pin, Triêng, Treng, Ta-riêng, Ve, Veh, La-ve, Ca-tang"
+  },
+  {
+    "value": "28",
+    "label": "Mạ",
+    "detail": "Châu Mạ, Mạ Ngăn, Mạ Xóp, Mạ Tô, Mạ Krung"
+  },
+  {
+    "value": "29",
+    "label": "Khơ-mú",
+    "detail": "Xá Cẩu, Mứn Xen, Pu Thênh, Tềnh, Tày Hay"
+  },
+  {
+    "value": "30",
+    "label": "Co",
+    "detail": "Cor, Col, Cùa, Trầu"
+  },
+  {
+    "value": "31",
+    "label": "Tà-ôi",
+    "detail": "Tôi-ôi, Pa-co, Pa-hi, Ba-hi"
+  },
+  {
+    "value": "32",
+    "label": "Chơ-ro",
+    "detail": "Dơ-ro, Châu-ro"
+  },
+  {
+    "value": "33",
+    "label": "Kháng",
+    "detail": "Xá Khao, Xá Súa, Xá Dón, Xá Dẩng, Xá Hốc, Xá Ái, Xá Bung, Quảng Lâm"
+  },
+  {
+    "value": "34",
+    "label": "Xinh-mun",
+    "detail": "Puộc, Pụa"
+  },
+  {
+    "value": "35",
+    "label": "Hà Nhì",
+    "detail": "U Ni, Xá U Ni"
+  },
+  {
+    "value": "36",
+    "label": "Chu ru",
+    "detail": "Chơ-ru, Chu"
+  },
+  {
+    "value": "37",
+    "label": "Lào",
+    "detail": "Là Bốc, Lào Nọi"
+  },
+  {
+    "value": "38",
+    "label": "La Chí",
+    "detail": "Cù Tê, La Quả"
+  },
+  {
+    "value": "39",
+    "label": "La Ha",
+    "detail": "Xá Khao, Khlá Phlạo"
+  },
+  {
+    "value": "40",
+    "label": "Phù Lá",
+    "detail": "Bồ Khô Pạ, Mu Di Pạ Xá, Phó, Phổ, Va Xơ"
+  },
+  {
+    "value": "41",
+    "label": "La Hủ",
+    "detail": "Lao, Pu Đang, Khù Xung, Cò Xung, Khả Quy"
+  },
+  {
+    "value": "42",
+    "label": "Lự",
+    "detail": "Lừ, Nhuồn, Duôn"
+  },
+  {
+    "value": "43",
+    "label": "Lô Lô",
+    "detail": "Mun Di"
+  },
+  {
+    "value": "44",
+    "label": "Chứt",
+    "detail": "Sách, Máy, Rục, Mã-liêng, A-rem, Tu vang, Pa-leng, Xơ-Lang, Tơ-hung, Chà-củi, Tắc-củi, U-mo, Xá Lá Vàng"
+  },
+  {
+    "value": "45",
+    "label": "Mảng",
+    "detail": "Mảng Ư, Xá Lá Vàng"
+  },
+  {
+    "value": "46",
+    "label": "Pà Thẻn",
+    "detail": "Pà Hưng, Tống"
+  },
+  {
+    "value": "47",
+    "label": "Co Lao"
+  },
+  {
+    "value": "48",
+    "label": "Cống",
+    "detail": "Xắm Khống, Mấng Nhé, Xá Xeng"
+  },
+  {
+    "value": "49",
+    "label": "Bố Y",
+    "detail": "Chủng Chá, Trọng Gia, Tu Di, Tu Din"
+  },
+  {
+    "value": "50",
+    "label": "Si La",
+    "detail": "Cù Dề Xừ, Khả pẻ"
+  },
+  {
+    "value": "51",
+    "label": "Pu Péo",
+    "detail": "Ka Pèo, Pen Ti Lô Lô"
+  },
+  {
+    "value": "52",
+    "label": "Brâu",
+    "detail": "Brao"
+  },
+  {
+    "value": "53",
+    "label": "Ơ Đu",
+    "detail": "Tày Hạt"
+  },
+  {
+    "value": "54",
+    "label": "Rơ măm"
+  },
+  {
+    "value": "55",
+    "label": "Người nước ngoài"
+  },
+  {
+    "value": "56",
+    "label": "Không rõ"
+  }
+]

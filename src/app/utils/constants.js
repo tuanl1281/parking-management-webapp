@@ -1,0 +1,14 @@
+export const TOKEN = 'TEMPLATE_MANAGEMENT';
+export const EXPIRED_TIME = 'TEMPLATE_MANAGEMENT_EXPIRED_TIME';
+
+export const FILE_STATUSES = {
+  PROCEED: 0,
+  DONE: 1,
+  FAILURE: 2,
+};
+
+export const QUEUE_STATUSES = {
+  DOING: 0,
+  SUCCESS: 1,
+  FAILURE: 2,
+};

@@ -1,0 +1,37 @@
+[
+  {
+    "value": "1",
+    "label": "Không",
+    "detail": "Không"
+  },
+  {
+    "value": "2",
+    "label": "Phật giáo",
+    "detail": "Phật giáo"
+  },
+  {
+    "value": "3",
+    "label": "Kitô giáo",
+    "detail": "Kitô giáo"
+  },
+  {
+    "value": "4",
+    "label": "Công giáo",
+    "detail": "Công giáo"
+  },
+  {
+    "value": "5",
+    "label": "Tin lành",
+    "detail": "Tin lành"
+  },
+  {
+    "value": "6",
+    "label": "Hòa Hảo",
+    "detail": "Hòa Hảo"
+  },
+  {
+    "value": "7",
+    "label": "Cao Đài",
+    "detail": "Cao Đài"
+  }
+]

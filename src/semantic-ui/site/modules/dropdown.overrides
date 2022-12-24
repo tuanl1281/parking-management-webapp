@@ -1,0 +1,18 @@
+/*******************************
+        User Overrides
+*******************************/
+.ui.secondary.inverted.menu .dropdown.item.medical-dropdown:hover,
+.ui.secondary.inverted.menu .dropdown.item.quarantine-dropdown:hover {
+  color: black !important;
+}
+
+.ui.simple.dropdown:hover > .menu > .item:hover > .menu.sub-menu {
+  left: 0 !important;
+  background: transparent !important;
+  border: none;
+  box-shadow: none;
+  padding-top: 15px !important;
+}
+.ui.menu .ui.dropdown .menu > .item .icon:not(.dropdown) {
+  font-size: .5em !important;
+}
