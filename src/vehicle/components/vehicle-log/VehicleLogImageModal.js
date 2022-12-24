@@ -21,6 +21,10 @@ const Image = styled.div`
   background-size: cover;
 `;
 
+const Plate = styled.div`
+  position: a
+`;
+
 const VehicleLogImageModal = ({ data, onClose }) => {
   const dispatch = useDispatch();
   return (
@@ -28,6 +32,7 @@ const VehicleLogImageModal = ({ data, onClose }) => {
       <Modal.Content>
         <ImageRecognition>
           <Image url={data?.imageRecognition} height={IMAGE_HEIGHT} width={IMAGE_WIDTH} />
+          <Plate />
         </ImageRecognition>
       </Modal.Content>
     </Modal>
