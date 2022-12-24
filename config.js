@@ -1,4 +1,4 @@
 window.env = {
-  TITLE: 'VITAJEAN',
-  API_URL: 'https://api.titkulhr.com/v1',
+  TITLE: 'PKM',
+  API_URL: 'http://localhost:5000',
 };
