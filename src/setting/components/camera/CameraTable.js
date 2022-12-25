@@ -3,12 +3,11 @@ import styled from 'styled-components';
 
 import { FiPlus, FiTrash } from 'react-icons/fi';
 import { DataList } from 'app/components/shared';
-import CustomerVehicleModal from 'customer/components/customer-vechicle/CustomerVehicleModal';
+import CameraModal from 'setting/components/camera/CameraModal';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { getVehicleOfCustomer, removeVehicleOfCustomer } from 'customer/actions/customer';
+import { getCameraOfSite, removeCameraOfSite } from 'setting/actions/site';
 import { showConfirmModal } from 'app/actions/global';
-import { formatLicenseNumber } from 'vehicle/utils/helpers';
 
 const Wrapper = styled.div`
   .cddXGj {
@@ -19,37 +18,37 @@ const Wrapper = styled.div`
   }
 `;
 
-const CustomerVehicleTable = () => {
+const CameraTable = () => {
   const [data, setData] = useState([]);
   const [openCreate, setOpenCreate] = useState(false);
 
   const dispatch = useDispatch();
   const {
-    selectedCustomer,
-    vehicleOfCustomerData,
-    getVehicleOfCustomerLoading,
-    removeVehicleOfCustomerLoading,
-  } = useSelector((_) => _.customer);
+    selectedSite,
+    cameraOfSiteData,
+    getCameraOfSiteLoading,
+    removeCameraOfSiteLoading,
+  } = useSelector((_) => _.site);
 
   const loading =
-    getVehicleOfCustomerLoading ||
-    removeVehicleOfCustomerLoading;
+    getCameraOfSiteLoading ||
+    removeCameraOfSiteLoading;
 
-  const headerRender = useCallback((_) => formatLicenseNumber(_?.licenseNumber), []);
-  const contentRender = useCallback((_) => `${_?.brand}${_?.name ? ` ${_.name}` : ''}`, []);
+  const headerRender = useCallback((_) => _?.name, []);
+  const contentRender = useCallback(() => '', []);
 
-  const fetchCustomerVehicles = useCallback(() => {
-    if (!selectedCustomer?.id) {
+  const fetchCameras = useCallback(() => {
+    if (!selectedSite?.id) {
       return;
     }
 
-    dispatch(getVehicleOfCustomer(selectedCustomer.id));
-  }, [selectedCustomer]);
-  useEffect(fetchCustomerVehicles, [fetchCustomerVehicles]);
+    dispatch(getCameraOfSite(selectedSite.id));
+  }, [selectedSite]);
+  useEffect(fetchCameras, [fetchCameras]);
 
   useEffect(() => {
-    setData(vehicleOfCustomerData?.data ?? []);
-  }, [vehicleOfCustomerData]);
+    setData(cameraOfSiteData?.data ?? []);
+  }, [cameraOfSiteData]);
 
   return (
     <Wrapper>
@@ -74,25 +73,25 @@ const CustomerVehicleTable = () => {
             title: 'Xoá',
             color: 'red',
             onClick: (_) => dispatch(showConfirmModal('Bạn có chắc muốn xoá?', () => {
-              if (!selectedCustomer?.id) {
+              if (!selectedSite?.id) {
                 setData((__) => __.filter((___) => ___.id !== _.id));
               }
 
-              dispatch(removeVehicleOfCustomer(selectedCustomer.id, [_.id]));
-              fetchCustomerVehicles();
+              dispatch(removeCameraOfSite(selectedSite.id, [_.id]));
+              fetchCameras();
             })),
           },
         ]}
       />
 
-      <CustomerVehicleModal
+      <CameraModal
         open={openCreate}
         onChange={(_) => setData((__) => ([...__, _]))}
-        onRefresh={fetchCustomerVehicles}
+        onRefresh={fetchCameras}
         onClose={() => setOpenCreate(false)}
       />
     </Wrapper>
   );
 };
 
-export default CustomerVehicleTable;
+export default CameraTable;

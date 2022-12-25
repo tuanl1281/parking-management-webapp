@@ -16,6 +16,8 @@ const INITIAL_STATE = {
   deleteCustomerLoading: false,
   addVehicleToCustomerLoading: false,
   removeVehicleOfCustomerLoading: false,
+  depositCustomerLoading: false,
+  withdrawCustomerLoading: false,
 };
 
 export default function (state = INITIAL_STATE, action) {
@@ -84,7 +86,7 @@ export default function (state = INITIAL_STATE, action) {
     case types.GET_TRANSACTION_OF_CUSTOMER_SUCCESS: {
       return {
         ...state,
-        vehicleOfCustomerData: action.payload,
+        transactionOfCustomerData: action.payload,
         getTransactionOfCustomerLoading: false,
       };
     }
@@ -147,6 +149,28 @@ export default function (state = INITIAL_STATE, action) {
       return {
         ...state,
         removeVehicleOfCustomerLoading: false,
+      };
+    case types.DEPOSIT_CUSTOMER_REQUEST:
+      return {
+        ...state,
+        depositCustomerLoading: true,
+      };
+    case types.DEPOSIT_CUSTOMER_SUCCESS:
+    case types.DEPOSIT_CUSTOMER_FAILURE:
+      return {
+        ...state,
+        depositCustomerLoading: false,
+      };
+    case types.WITHDRAW_CUSTOMER_REQUEST:
+      return {
+        ...state,
+        withdrawCustomerLoading: true,
+      };
+    case types.WITHDRAW_CUSTOMER_SUCCESS:
+    case types.WITHDRAW_CUSTOMER_FAILURE:
+      return {
+        ...state,
+        withdrawCustomerLoading: false,
       };
     default:
       return state;

@@ -136,7 +136,7 @@ const TopBar = () => {
             size="mini"
             position="bottom right"
             content="Thiết lập"
-            trigger={<FiSettings onClick={() => history.push('/setting')} />}
+            trigger={<FiSettings onClick={() => history.push('/settings')} />}
           />
         </StyledRightMenuItem>
       )}

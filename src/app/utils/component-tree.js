@@ -9,6 +9,7 @@ import LandingPage from 'app/pages/LandingPage';
 import DashboardPage from 'dashboard/pages/DasboardPage';
 import CustomerPage from 'customer/pages/CustomerPage';
 import VehiclePage from 'vehicle/pages/VehiclePage';
+import SettingPage from 'setting/pages/SettingPage';
 
 export const groupKey = {
 };
@@ -28,6 +29,10 @@ export const componentKey = {
 
   // #region vehicle
   VEHICLE_PAGE: 'VEHICLE_PAGE',
+  // #endregion
+
+  // #region setting
+  SETTING_PAGE: 'SETTING_PAGE',
   // #endregion
 };
 
@@ -97,6 +102,18 @@ const componentTree = [
     hidden: false,
     layout: AppLayout,
     component: VehiclePage,
+    breadcrumb: true,
+    isPrivate: true,
+    isDeveloping: false,
+  },
+  {
+    key: componentKey.SETTING_PAGE,
+    path: '/settings',
+    exact: false,
+    title: 'Cài đặt',
+    hidden: true,
+    layout: AppLayout,
+    component: SettingPage,
     breadcrumb: true,
     isPrivate: true,
     isDeveloping: false,

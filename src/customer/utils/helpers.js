@@ -8,7 +8,10 @@ const formatPhoneNumber = (number) => {
 
   return formattedNumber;
 };
-const formatCurrency = (number) => number?.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+const formatCurrency = (number, sign = 'đ') =>
+  `${number?.toFixed(1)
+    .replace(/\d(?=(\d{3})+\.)/g, '$&,')
+    .replace(/(\.\d)/g, '')} ${sign}`;
 
 export {
   formatName,

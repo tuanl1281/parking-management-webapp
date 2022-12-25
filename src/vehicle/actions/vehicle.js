@@ -176,6 +176,36 @@ const deleteVehicle = (id) => (dispatch) =>
       });
   });
 
+const identifyVehicleRequest = () => ({ type: types.IDENTIFY_VEHICLE_REQUEST });
+const identifyVehicleSuccess = (response) => ({
+  type: types.IDENTIFY_VEHICLE_SUCCESS,
+  payload: response,
+});
+const identifyVehicleFailure = (error) => ({
+  type: types.IDENTIFY_VEHICLE_FAILURE,
+  payload: error,
+});
+
+const identifyVehicle = (data) => (dispatch) =>
+  new Promise((resolve, reject) => {
+    dispatch(identifyVehicleRequest());
+    httpClient
+      .callApi({
+        method: 'POST',
+        contentType: 'application/x-www-form-urlencoded',
+        url: apiLinks.vehicle.identify,
+        data,
+      })
+      .then((response) => {
+        dispatch(identifyVehicleSuccess(response.data));
+        resolve(response.data);
+      })
+      .catch((response) => {
+        dispatch(identifyVehicleFailure(response.data));
+        reject(response.data);
+      });
+  });
+
 const addCustomerToVehicleRequest = () => ({ type: types.ADD_CUSOMTER_TO_VEHICLE_REQUEST });
 const addCustomerToVehicleSuccess = (response) => ({
   type: types.ADD_CUSOMTER_TO_VEHICLE_SUCCESS,
@@ -234,6 +264,7 @@ export {
   createVehicle,
   updateVehicle,
   deleteVehicle,
+  identifyVehicle,
   addCustomerToVehicle,
   removeVehicleOfCustomer,
 };

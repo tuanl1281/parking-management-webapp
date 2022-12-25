@@ -52,6 +52,8 @@ const apiLinks = {
     addVehicle: (id) => `${gatewayUrl}/Customers/${id}/AddVehicle`,
     removeVehicle: (id) => `${gatewayUrl}/Customers/${id}/RemoveVehicle`,
     getTransaction: (id) => `${gatewayUrl}/Customers/${id}/Transaction`,
+    deposit: (id) => `${gatewayUrl}/Customers/${id}/Deposit`,
+    withdraw: (id) => `${gatewayUrl}/Customers/${id}/Withdraw`,
   },
   vehicle: {
     get: (id) => `${gatewayUrl}/Vehicles${id ? `/${id}` : ''}`,
@@ -61,6 +63,25 @@ const apiLinks = {
     addCustomer: (id, customerId) => `${gatewayUrl}/Customers/${id}/AddCustomer/${customerId}`,
     removeCustomer: (id) => `${gatewayUrl}/Customers/${id}/RemoveCustomer`,
     getLog: (id) => `${gatewayUrl}/Vehicles/${id}/Log`,
+    identify: `${gatewayUrl}/Vehicles/Identify`,
+  },
+  site: {
+    get: (id) => `${gatewayUrl}/Sites${id ? `/${id}` : ''}`,
+    create: `${gatewayUrl}/Sites`,
+    update: (id) => `${gatewayUrl}/Sites/${id}`,
+    delete: (id) => `${gatewayUrl}/Sites/${id}`,
+    getCamera: (id) => `${gatewayUrl}/Sites/${id}/Camera`,
+    addCamera: (id) => `${gatewayUrl}/Sites/${id}/AddCamera`,
+    removeCamera: (id) => `${gatewayUrl}/Sites/${id}/RemoveCamera`,
+  },
+  camera: {
+    get: (id) => `${gatewayUrl}/Cameras${id ? `/${id}` : ''}`,
+    create: `${gatewayUrl}/Cameras`,
+    update: (id) => `${gatewayUrl}/Cameras/${id}`,
+    delete: (id) => `${gatewayUrl}/Cameras/${id}`,
+  },
+  statistic: {
+    getVehicleLog: `${gatewayUrl}/Statistics/Vehicle/Log`,
   },
 };
 

@@ -17,6 +17,12 @@ const Wrapper = styled.div`
   .content {
     width: 100%;
   }
+  .cddXGj {
+    margin-top: 0;
+  }
+  .fPCFWj {
+    margin: 0;
+  }
 `;
 
 const CustomerTransactionTable = () => {

@@ -253,6 +253,58 @@ const removeVehicleOfCustomer = (id, data) => (dispatch) =>
       });
   });
 
+const depositCustomerRequest = () => ({ type: types.DEPOSIT_CUSTOMER_REQUEST });
+const depositCustomerSuccess = (response) => ({
+  type: types.DEPOSIT_CUSTOMER_SUCCESS,
+  payload: response,
+});
+const depositCustomerFailure = (error) => ({ type: types.DEPOSIT_CUSTOMER_FAILURE, payload: error });
+
+const depositCustomer = (id, data) => (dispatch) =>
+  new Promise((resolve, reject) => {
+    dispatch(depositCustomerRequest());
+    httpClient
+      .callApi({
+        method: 'POST',
+        url: apiLinks.customer.deposit(id),
+        data,
+      })
+      .then((response) => {
+        dispatch(depositCustomerSuccess(response.data));
+        resolve(response.data);
+      })
+      .catch((error) => {
+        dispatch(depositCustomerFailure(error));
+        reject(error);
+      });
+  });
+
+const withdrawCustomerRequest = () => ({ type: types.WITHDRAW_CUSTOMER_REQUEST });
+const withdrawCustomerSuccess = (response) => ({
+  type: types.WITHDRAW_CUSTOMER_SUCCESS,
+  payload: response,
+});
+const withdrawCustomerFailure = (error) => ({ type: types.WITHDRAW_CUSTOMER_FAILURE, payload: error });
+
+const withdrawCustomer = (id, data) => (dispatch) =>
+  new Promise((resolve, reject) => {
+    dispatch(withdrawCustomerRequest());
+    httpClient
+      .callApi({
+        method: 'POST',
+        url: apiLinks.customer.withdraw(id),
+        data,
+      })
+      .then((response) => {
+        dispatch(withdrawCustomerSuccess(response.data));
+        resolve(response.data);
+      })
+      .catch((error) => {
+        dispatch(withdrawCustomerFailure(error));
+        reject(error);
+      });
+  });
+
 export {
   selectCustomer,
   getCustomers,
@@ -264,4 +316,6 @@ export {
   deleteCustomer,
   addVehicleToCustomer,
   removeVehicleOfCustomer,
+  depositCustomer,
+  withdrawCustomer,
 };

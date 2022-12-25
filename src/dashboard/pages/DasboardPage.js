@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 
 import { Grid, Segment, Header } from 'semantic-ui-react';
+import VehicleLogStatisticMenu from 'dashboard/components/vehicle-log/VehicleLogStatisticMenu';
 
 import { useAuth } from 'app/hooks';
 
@@ -9,15 +10,9 @@ const DashboardPage = () => {
 
   // eslint-disable-next-line camelcase
   const jsx_dashboard = useCallback(() => {
-    if (isEmployee()) {
+    if (isAdmin()) {
       return (
-        <Segment style={{ padding: '2em 0em' }} vertical />
-      );
-    }
-
-    if (isAdmin() || isLeader()) {
-      return (
-        <Segment vertical style={{ padding: '2em 0em' }} />
+        <VehicleLogStatisticMenu />
       );
     }
 

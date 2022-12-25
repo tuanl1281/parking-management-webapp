@@ -2,55 +2,44 @@ import React, { useMemo, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { Dimmer, Form, Loader, Modal, /* Label, */ Input, Button, TextArea } from 'semantic-ui-react';
+import { Dimmer, Form, Loader, Modal, Input, Button, TextArea } from 'semantic-ui-react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
-import { createCustomer, updateCustomer } from 'customer/actions/customer';
-import { formatName } from 'customer/utils/helpers';
+import { createSite, updateSite } from 'setting/actions/site';
 
 const Wrapper = styled.div`
   position: relative;
 `;
 
-// const Ribbon = styled(Label)`
-//   left: calc(-1rem - 1.725em) !important;
-//   margin-bottom: 1rem !important;
-// `;
-
-const CustomerModal = ({ open, data, onRefresh, onClose: onCloseProps }) => {
+const SiteModal = ({ open, data, onRefresh, onClose: onCloseProps }) => {
   const dispatch = useDispatch();
   const { errors, control, reset, handleSubmit } = useForm();
-  const { createCustomerLoading, updateCustomerLoading } = useSelector((_) => _.customer);
+  const { createSiteLoading, updateSiteLoading } = useSelector((_) => _.site);
 
   const loading =
-    createCustomerLoading ||
-    updateCustomerLoading;
+    createSiteLoading ||
+    updateSiteLoading;
 
   const defaultValue = useMemo(() => ({
-    firstName: undefined,
-    lastName: undefined,
-    phoneNumber: undefined,
+    name: undefined,
     address: undefined,
-    vehicles: [],
+    fee: 0,
   }), []);
 
   const rules = useMemo(() => ({
-    firstName: {
-      required: true,
-    },
-    lastName: {
-      required: true,
-    },
-    phoneNumber: {
+    name: {
       required: true,
     },
     address: {
       required: true,
     },
+    fee: {
+      required: true,
+    },
   }), []);
 
-  const format = (values) => ({ ...values });
+  const format = (values) => ({ ...values, fee: parseInt(values?.fee ?? 0, 10) });
 
   const onClose = () => {
     reset({});
@@ -62,8 +51,8 @@ const CustomerModal = ({ open, data, onRefresh, onClose: onCloseProps }) => {
     try {
       await dispatch(
         data?.id
-        ? updateCustomer(format({ ...values, id: data.id }))
-        : createCustomer(format(values)),
+        ? updateSite(format({ ...values, id: data.id }))
+        : createSite(format(values)),
       );
 
       onClose();
@@ -78,7 +67,7 @@ const CustomerModal = ({ open, data, onRefresh, onClose: onCloseProps }) => {
   return (
     <Modal open={open || Boolean(data?.id)} onClose={onClose}>
       <Modal.Header>
-        {data?.id ? formatName({ ...data }) : 'Tạo'}
+        {data?.id ? data?.name : 'Tạo'}
       </Modal.Header>
       <Modal.Content>
         <Wrapper>
@@ -86,14 +75,13 @@ const CustomerModal = ({ open, data, onRefresh, onClose: onCloseProps }) => {
             <Loader />
           </Dimmer>
 
-          {/* {!data?.id && <Ribbon ribbon size="large" color="green" content="Thông tin" />} */}
           <Form>
             <Form.Group widths="equal">
               <Controller
-                name="firstName"
+                name="name"
                 control={control}
-                rules={rules.firstName}
-                defaultValue={defaultValue.firstName}
+                rules={rules.name}
+                defaultValue={defaultValue.name}
                 render={({ value, onChange, onBlur }) => (
                   <Form.Field
                     fluid
@@ -103,45 +91,7 @@ const CustomerModal = ({ open, data, onRefresh, onClose: onCloseProps }) => {
                     value={value}
                     onChange={onChange}
                     onBlur={onBlur}
-                    error={errors?.firstName && `${errors?.firstName?.message !== '' ? errors.firstName.message : 'Bắt buộc'}`}
-                  />
-                )}
-              />
-              <Controller
-                name="lastName"
-                control={control}
-                rules={rules.lastName}
-                defaultValue={defaultValue.lastName}
-                render={({ value, onChange, onBlur }) => (
-                  <Form.Field
-                    fluid
-                    required
-                    label="Họ"
-                    control={Input}
-                    value={value}
-                    onChange={onChange}
-                    onBlur={onBlur}
-                    error={errors?.lastName && `${errors?.lastName?.message !== '' ? errors.lastName.message : 'Bắt buộc'}`}
-                  />
-                )}
-              />
-            </Form.Group>
-            <Form.Group widths="equal">
-              <Controller
-                name="phoneNumber"
-                control={control}
-                rules={rules.phoneNumber}
-                defaultValue={defaultValue.phoneNumber}
-                render={({ value, onChange, onBlur }) => (
-                  <Form.Field
-                    fluid
-                    required
-                    label="Số điện thoại"
-                    control={Input}
-                    value={value}
-                    onChange={onChange}
-                    onBlur={onBlur}
-                    error={errors?.phoneNumber && `${errors?.phoneNumber?.message !== '' ? errors.phoneNumber.message : 'Bắt buộc'}`}
+                    error={errors?.name && `${errors?.name?.message !== '' ? errors.name.message : 'Bắt buộc'}`}
                   />
                 )}
               />
@@ -166,13 +116,28 @@ const CustomerModal = ({ open, data, onRefresh, onClose: onCloseProps }) => {
                 )}
               />
             </Form.Group>
+            <Form.Group widths="equal">
+              <Controller
+                name="fee"
+                control={control}
+                rules={rules.fee}
+                defaultValue={defaultValue.fee}
+                render={({ value, onChange, onBlur }) => (
+                  <Form.Field
+                    fluid
+                    required
+                    type="number"
+                    label="Phí"
+                    control={Input}
+                    value={value}
+                    onChange={onChange}
+                    onBlur={onBlur}
+                    error={errors?.fee && `${errors?.fee?.message !== '' ? errors.fee.message : 'Bắt buộc'}`}
+                  />
+                )}
+              />
+            </Form.Group>
           </Form>
-
-          {/* {!data?.id && (
-            <>
-              <Ribbon ribbon size="large" color="blue" content="Phương tiện giao thông" />
-            </>
-          )} */}
         </Wrapper>
       </Modal.Content>
       <Modal.Actions>
@@ -197,20 +162,21 @@ const CustomerModal = ({ open, data, onRefresh, onClose: onCloseProps }) => {
   );
 };
 
-CustomerModal.propTypes = {
+SiteModal.propTypes = {
   open: PropTypes.bool,
   data: PropTypes.shape({
     id: PropTypes.string.isRequired,
+    name: PropTypes.string,
   }),
   onRefresh: PropTypes.func,
   onClose: PropTypes.func,
 };
 
-CustomerModal.defaultProps = {
+SiteModal.defaultProps = {
   open: false,
   data: null,
   onRefresh: () => {},
   onClose: () => {},
 };
 
-export default CustomerModal;
+export default SiteModal;

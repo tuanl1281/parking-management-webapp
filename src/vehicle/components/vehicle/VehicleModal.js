@@ -1,28 +1,25 @@
-import React, { useMemo, useCallback } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import React, { useEffect, useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { Dimmer, Loader, Modal, Form, Input, Select, Button } from 'semantic-ui-react';
 
-import { useDispatch, useSelector } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
-import { showUploadModal } from 'app/actions/global';
-import { addVehicleToCustomer } from 'customer/actions/customer';
-import { carBrandOptions, motorcycleBrandOptions, vehicleTypeOptions } from 'vehicle/utils/helpers';
+import { useDispatch, useSelector } from 'react-redux';
+import { carBrandOptions, formatLicenseNumber, motorcycleBrandOptions, vehicleTypeOptions } from 'vehicle/utils/helpers';
 import { VEHICLE_TYPE } from 'vehicle/utils/constants';
-import { identifyVehicle } from 'vehicle/actions/vehicle';
+import { createVehicle, updateVehicle } from 'vehicle/actions/vehicle';
 
 const Wrapper = styled.div`
   position: relative;
 `;
 
-const CustomerVehicleModal = ({ open, onRefresh, onChange: onChangeProps, onClose: onCloseProps }) => {
+const VehicleModal = ({ open, data, onRefresh, onClose: onCloseProps }) => {
   const dispatch = useDispatch();
-  const { control, errors, reset, watch, setValue, handleSubmit } = useForm();
-  const { selectedCustomer, addVehicleToCustomerLoading } = useSelector((_) => _.customer);
+  const { errors, control, watch, reset, handleSubmit } = useForm();
+  const { createVehicleLoading, updateVehicleLoading } = useSelector((_) => _.vehicle);
 
-  const loading = addVehicleToCustomerLoading;
+  const loading = createVehicleLoading || updateVehicleLoading;
 
   const vehicleType = watch('type');
   const defaultValue = useMemo(() => ({
@@ -45,58 +42,35 @@ const CustomerVehicleModal = ({ open, onRefresh, onChange: onChangeProps, onClos
     },
   }), []);
 
-  const format = (values) => ({ ...values, name: '' });
-  const formatRegcognitionLicenseNumber = (file) => {
-    const payload = new FormData();
-    payload.append('file', file);
-    payload.append('isLog', false);
+  const format = (values) => ({ ...values });
 
-    return payload;
-  };
-
-  const onRegconitionLicenseNumber = useCallback(async (file) => {
-    if (!file?.name) {
-      return;
-    }
-
-    try {
-      const response = await dispatch(identifyVehicle(formatRegcognitionLicenseNumber(file)));
-      if ((response?.data ?? []).length > 0) {
-        setValue('licenseNumber', response.data.shift());
-      }
-      // eslint-disable-next-line no-empty
-    } catch (exception) {}
-  }, [dispatch]);
-
-  const onClose = useCallback(() => {
-    if (selectedCustomer?.id) {
-      onRefresh();
-    }
-
-    onCloseProps();
+  const onClose = () => {
     reset({});
-  }, [selectedCustomer, reset, onRefresh, onCloseProps]);
+    onCloseProps();
+    onRefresh();
+  };
 
   const onSubmit = useCallback(async (values) => {
     try {
-      if (!selectedCustomer?.id) {
-        onChangeProps({
-          ...format(values),
-          id: uuidv4(),
-        });
-      } else {
-        await dispatch(addVehicleToCustomer(selectedCustomer.id, [format(values)]));
-      }
+      await dispatch(
+        data?.id
+        ? updateVehicle(format({ ...values, id: data.id, cusomterId: data?.customer?.id }))
+        : createVehicle(format(values)),
+      );
 
       onClose();
     // eslint-disable-next-line no-empty
     } catch (exception) {}
-  }, [selectedCustomer, onClose]);
+  }, [data, onClose]);
+
+  useEffect(() => {
+    reset(data?.id ? data : {});
+  }, [data]);
 
   return (
-    <Modal open={open} onClose={onClose}>
+    <Modal open={open || Boolean(data?.id)} onClose={onClose}>
       <Modal.Header>
-        Đăng kí phương tiện giao thông
+        {data?.id ? formatLicenseNumber(data?.licenseNumber) : 'Tạo'}
       </Modal.Header>
       <Modal.Content>
         <Wrapper>
@@ -161,11 +135,6 @@ const CustomerVehicleModal = ({ open, onRefresh, onChange: onChangeProps, onClos
                   <Form.Field
                     fluid
                     required
-                    action={{
-                      basic: true,
-                      icon: 'camera',
-                      onClick: () => dispatch(showUploadModal(null, null, (file) => onRegconitionLicenseNumber(file))),
-                    }}
                     label="Biển số đăng kí"
                     control={Input}
                     value={value}
@@ -201,18 +170,24 @@ const CustomerVehicleModal = ({ open, onRefresh, onChange: onChangeProps, onClos
   );
 };
 
-CustomerVehicleModal.propTypes = {
+VehicleModal.propTypes = {
   open: PropTypes.bool,
-  onChange: PropTypes.func,
+  data: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    licenseNumber: PropTypes.string,
+    customer: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }),
+  }),
   onRefresh: PropTypes.func,
   onClose: PropTypes.func,
 };
 
-CustomerVehicleModal.defaultProps = {
+VehicleModal.defaultProps = {
   open: false,
-  onChange: () => {},
+  data: null,
   onRefresh: () => {},
   onClose: () => {},
 };
 
-export default CustomerVehicleModal;
+export default VehicleModal;

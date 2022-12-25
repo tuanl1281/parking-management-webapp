@@ -1,6 +1,7 @@
 const VEHICLE_TYPE = {
-  MOTOBIKE: 0,
-  CAR: 1,
+  UNDEFINED: 0,
+  motorcycle: 1,
+  CAR: 2,
 };
 
 export {

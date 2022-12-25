@@ -3,7 +3,7 @@ import { VEHICLE_TYPE } from 'vehicle/utils/constants';
 const vehicleTypes = [
   {
     text: 'Xe máy',
-    value: VEHICLE_TYPE.MOTOBIKE,
+    value: VEHICLE_TYPE.motorcycle,
   },
   {
     text: 'Xe ô tô',
@@ -17,9 +17,9 @@ const vehicleTypeOptions = vehicleTypes.map((_) => ({
   content: _.text,
 }));
 
-const motobikeBrands = ['Honda', 'Yamaha', 'Sym', 'Piaggio'];
+const motorcycleBrands = ['Honda', 'Yamaha', 'Sym', 'Piaggio'];
 
-const motobikeBrandOptions = motobikeBrands.map((_) => ({
+const motorcycleBrandOptions = motorcycleBrands.map((_) => ({
   value: _,
   text: _,
   content: _,
@@ -35,18 +35,35 @@ const carBrandOptions = carBrands.map((_) => ({
 
 const getOption = (array, value) => (array || []).find((_) => _?.value === value);
 const getVehicleType = (type) => getOption(vehicleTypeOptions, type);
-const getMotobikeBrand = (brand) => getOption(motobikeBrandOptions, brand);
+const getmotorcycleBrand = (brand) => getOption(motorcycleBrandOptions, brand);
 const getCarBrand = (brand) => getOption(carBrandOptions, brand);
+
+const formatLicenseNumber = (number) => {
+  if (!number) {
+    return '';
+  }
+
+  if (number.length === 9) {
+    return number.replace(/(\w{4})(\w{5})/i, '$1 - $2');
+  }
+
+  if (number.length === 8) {
+    return number.replace(/(\w{3})(\w{5})/i, '$1 - $2');
+  }
+
+  return number;
+};
 
 export {
   vehicleTypes,
   vehicleTypeOptions,
-  motobikeBrands,
-  motobikeBrandOptions,
+  motorcycleBrands,
+  motorcycleBrandOptions,
   carBrands,
   carBrandOptions,
   getOption,
   getVehicleType,
-  getMotobikeBrand,
+  getmotorcycleBrand,
   getCarBrand,
+  formatLicenseNumber,
 };
