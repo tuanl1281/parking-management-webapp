@@ -11,11 +11,8 @@ import { showConfirmModal } from 'app/actions/global';
 import { formatLicenseNumber } from 'vehicle/utils/helpers';
 
 const Wrapper = styled.div`
-  .cddXGj {
+  > div {
     margin-top: 0;
-  }
-  .fPCFWj {
-    margin: 0;
   }
 `;
 

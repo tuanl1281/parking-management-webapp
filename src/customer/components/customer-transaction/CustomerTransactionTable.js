@@ -14,15 +14,22 @@ import { defaultPayload } from 'app/utils/helpers';
 
 const Wrapper = styled.div`
   position: relative;
-  .content {
-    width: 100%;
-  }
-  .cddXGj {
+  > div {
     margin-top: 0;
   }
-  .fPCFWj {
-    margin: 0;
+  & .content {
+    width: 100%;
   }
+  & .column {
+    > div {
+      &:first-child: {
+        margin-top: 0;
+      }
+    }
+    & .list {
+      margin-top: 0.5rem;
+    }
+
 `;
 
 const CustomerTransactionTable = () => {

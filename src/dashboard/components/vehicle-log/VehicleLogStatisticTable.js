@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import moment from 'moment';
 
 import { FiImage } from 'react-icons/fi';
-import { Dimmer, Loader, Segment } from 'semantic-ui-react';
+import { Dimmer, Loader } from 'semantic-ui-react';
 import { DataList } from 'app/components/shared';
 import VehicleLogImageModal from 'vehicle/components/vehicle-log/VehicleLogImageModal';
 
@@ -16,20 +16,18 @@ import { formatDate, formatSystemDate } from 'app/utils/time-utils';
 
 const Wrapper = styled.div`
   position: relative;
-  & .cddXGj {
+  > div {
     margin-top: 0;
   }
-
-  & .bqegoG {
-    margin-top: 0;
-  }
-
-  & .bwqnUH {
-    margin-top: 0.5rem;
-  }
-
-  & .eDBCqj {
-    margin-top: 0.5rem;
+  & .column {
+    > div {
+      &:first-child: {
+        margin-top: 0;
+      }
+    }
+    & .list {
+      margin-top: 0.5rem;
+    }
   }
 `;
 
@@ -73,26 +71,24 @@ const VehicleLogStatisticTable = () => {
           <center>Không có dữ liệu</center>
         )}
         {(data || []).length > 0 && (
-          <Segment style={{ marginTop: '0' }}>
-            <DataList
-              data={data}
-              totalCounts={totalCounts}
-              onPaginationChange={({ pageIndex: pi, pageSize: pe }) => {
-                setPageIndex(pe !== pageSize ? 0 : pi);
-                setPageSize(pe);
-              }}
-              getRowKey={(_) => _.id}
-              itemHeaderRender={headerRender}
-              itemContentRender={contentRender}
-              itemActions={[
-                {
-                  icon: <FiImage />,
-                  color: 'blue',
-                  onClick: (_) => setDetail(_),
-                },
-              ]}
-            />
-          </Segment>
+          <DataList
+            data={data}
+            totalCounts={totalCounts}
+            onPaginationChange={({ pageIndex: pi, pageSize: pe }) => {
+              setPageIndex(pe !== pageSize ? 0 : pi);
+              setPageSize(pe);
+            }}
+            getRowKey={(_) => _.id}
+            itemHeaderRender={headerRender}
+            itemContentRender={contentRender}
+            itemActions={[
+              {
+                icon: <FiImage />,
+                color: 'blue',
+                onClick: (_) => setDetail(_),
+              },
+            ]}
+          />
         )}
       </Wrapper>
 

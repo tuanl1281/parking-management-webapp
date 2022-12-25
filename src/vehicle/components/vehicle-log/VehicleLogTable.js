@@ -14,12 +14,16 @@ import { formatDate, formatSystemDate } from 'app/utils/time-utils';
 
 const Wrapper = styled.div`
   position: relative;
-  & .cddXGj {
+  > div {
     margin-top: 0;
   }
-
-  & .bwqnUH {
-    margin-top: 0.5rem;
+  & .segment {
+    > div {
+      margin-top: 0;
+    }
+    & .list {
+      margin-top: 0.5rem;
+    }
   }
 `;
 
