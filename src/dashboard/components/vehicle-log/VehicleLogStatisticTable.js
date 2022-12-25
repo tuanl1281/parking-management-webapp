@@ -20,7 +20,15 @@ const Wrapper = styled.div`
     margin-top: 0;
   }
 
+  & .bqegoG {
+    margin-top: 0;
+  }
+
   & .bwqnUH {
+    margin-top: 0.5rem;
+  }
+
+  & .eDBCqj {
     margin-top: 0.5rem;
   }
 `;
