@@ -1,7 +1,8 @@
 import React, { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import styled from 'styled-components';
+import moment from 'moment';
 
-import { Grid, Tab as TabSUI, Segment, Modal, Form, Header, Icon, Select, Button } from 'semantic-ui-react';
+import { Grid, Tab as TabSUI, Segment, Dimmer, Loader, Modal, Form, Header, Icon, Select, Button } from 'semantic-ui-react';
 import VehicleLogStatisticTable from 'dashboard/components/vehicle-log/VehicleLogStatisticTable';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,6 +10,8 @@ import { getCameras } from 'setting/actions/camera';
 import { defaultPayload } from 'app/utils/helpers';
 import { identifyVehicle } from 'vehicle/actions/vehicle';
 import { useQueryString } from 'app/hooks';
+import { getVehicleLogStatistics } from 'dashboard/actions/statistic';
+import { formatSystemDate } from 'app/utils/time-utils';
 
 const Wrapper = styled.div`
   padding: 3.5em 6em;
@@ -37,7 +40,7 @@ const VehicleLogStatisticMenu = () => {
   const [selectedCamera, setSelectedCamera] = useState(undefined);
 
   const dispatch = useDispatch();
-  const [, setFilter] = useQueryString();
+  const [filter, setFilter] = useQueryString();
   const { identifyVehicleLoading } = useSelector((_) => _.vehicle);
   const { cameraList, getCamerasLoading } = useSelector((_) => _.camera);
 
@@ -89,8 +92,17 @@ const VehicleLogStatisticMenu = () => {
 
     try {
       await dispatch(identifyVehicle(format({ file: selectedImage, cameraId: selectedCamera?.id, isLog: true })));
-
-      setFilter({ pageIndex: 0, pageSize: 10 });
+      if (filter?.pageIndex !== '0') {
+        setFilter({ pageIndex: 0, pageSize: 10 });
+      } else {
+        dispatch(getVehicleLogStatistics({
+          ...filter,
+          fromDate: formatSystemDate(moment().startOf('month')),
+          toDate: formatSystemDate(moment().endOf('month')),
+          pageIndex: 0,
+          pageSize: 10,
+        }));
+      }
       setIdentifyImage(false);
       setSeletedImage(null);
       setSelectedCamera(undefined);
@@ -123,6 +135,10 @@ const VehicleLogStatisticMenu = () => {
         <Modal.Header>Tải ảnh</Modal.Header>
         <Modal.Content>
           <div style={{ position: 'relative' }}>
+            <Dimmer inverted active={loading}>
+              <Loader />
+            </Dimmer>
+
             <Form>
               <Form.Group widths="equal">
                 <Form.Field

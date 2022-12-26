@@ -15,6 +15,7 @@ const INITIAL_STATE = {
   deleteVehicleLoading: false,
   addCustomerToVehicleLoading: false,
   removeCustomerOfVehicleLoading: false,
+  identifyVehicleLoading: false,
 };
 
 export default function (state = INITIAL_STATE, action) {
@@ -129,6 +130,17 @@ export default function (state = INITIAL_STATE, action) {
       return {
         ...state,
         removeCustomerOfVehicleLoading: false,
+      };
+    case types.IDENTIFY_VEHICLE_REQUEST:
+      return {
+        ...state,
+        identifyVehicleLoading: true,
+      };
+    case types.IDENTIFY_VEHICLE_SUCCESS:
+    case types.IDENTIFY_VEHICLE_FAILURE:
+      return {
+        ...state,
+        identifyVehicleLoading: false,
       };
     default:
       return state;
